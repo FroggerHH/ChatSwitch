@@ -50,18 +50,6 @@
         <Reference Include="BepInEx">
           <HintPath>..\..\..\Steam\steamapps\common\Valheim\BepInEx\core\BepInEx.dll</HintPath>
         </Reference>
-        <Reference Include="fastJSON">
-          <HintPath>..\Utils\fastJSON.dll</HintPath>
-        </Reference>
-        <Reference Include="Groups">
-          <HintPath>..\..\..\Steam\steamapps\common\Valheim\BepInEx\plugins\Groups.dll</HintPath>
-        </Reference>
-        <Reference Include="LocalizationManager">
-          <HintPath>..\Utils\LocalizationManager.dll</HintPath>
-        </Reference>
-        <Reference Include="ServerSync">
-          <HintPath>..\Utils\ServerSync.dll</HintPath>
-        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
@@ -78,24 +66,12 @@
         <Reference Include="UnityEngine.UI">
           <HintPath>..\..\..\Steam\steamapps\common\Valheim\valheim_Data\Managed\UnityEngine.UI.dll</HintPath>
         </Reference>
-        <Reference Include="YamlDotNet, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-          <HintPath>packages\YamlDotNet.13.1.0\lib\net47\YamlDotNet.dll</HintPath>
-        </Reference>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Patch\ChatPatch.cs" />
         <Compile Include="Plugin.cs" />
         <Compile Include="ConfigurationManagerAttributes.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="GroupsAPI.dll">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <Content Include="ILRepack.targets" />
-    </ItemGroup>
-    <ItemGroup>
-      <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Build\" />
@@ -105,13 +81,6 @@
         <Copy SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="D:\Steam\steamapps\common\Valheim\BepInEx\plugins" />
         <Copy SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="D:\Steam\steamapps\common\Valheim dedicated server\BepInEx\plugins" />
         <Copy SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="D:\Slava\Coding\DiscordGuard\Build" />
-    </Target>
-    <Import Project="packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets')" />
-    <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-      <PropertyGroup>
-        <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
-      </PropertyGroup>
-      <Error Condition="!Exists('packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets'))" />
     </Target>
 
 </Project>

@@ -3,7 +3,6 @@ using HarmonyLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static ChatSwitch.Plugin;
-using static Groups.ChatCommands;
 
 namespace ChatSwitch;
 
@@ -16,6 +15,7 @@ internal class ChatPatch
         if (__instance.m_input.text != "/s") return true;
         
         inSMode = !inSMode;
+        inWMode = false;
         Player.m_localPlayer.Message(MessageHud.MessageType.TopLeft, inSMode == true ? "In main chat" : "Out main chat");
         return false;
     }    [HarmonyPatch(typeof(Chat), nameof(Chat.InputText)), HarmonyPrefix]
@@ -24,6 +24,7 @@ internal class ChatPatch
         if (__instance.m_input.text != "/w") return true;
         
         inWMode = !inWMode;
+        inSMode = false;
         Player.m_localPlayer.Message(MessageHud.MessageType.TopLeft, inWMode == true ? "In wisper chat" : "Out wisper chat");
         return false;
     }
